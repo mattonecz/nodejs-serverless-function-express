@@ -5,6 +5,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     "https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt"
   );
   const data = await response.text();
+  res.setHeader("Access-Control-Allow-Origin", "https://momence.vercel.app");
   return res.json({
     data,
   });
