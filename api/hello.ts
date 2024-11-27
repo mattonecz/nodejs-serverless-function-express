@@ -1,8 +1,11 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node'
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
-  const { name = 'World' } = req.query
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  const response = await fetch(
+    "https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt"
+  );
+  const data = await response.text();
   return res.json({
-    message: `Hello ${name}!`,
-  })
+    data,
+  });
 }
